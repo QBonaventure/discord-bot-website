@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'session' => [
+        'key' => '',
+        'expiration_time' => 1800,
+        'cookie_name' => 'slsession',
+        'discord_oauth' => [
+            'clientId' => '',
+            'clientSecret' => '',
+            'redirectUri' => '',
+        ],
+    ],
+    'dependencies' => [
+        'factories' => [
+            App\SessionMiddleware::class => App\Session\SessionMiddlewareFactory::class,
+            App\Middleware\UserMiddleware::class => App\Middleware\UserMiddlewareFactory::class,
+        ]
+    ],
+];
+    

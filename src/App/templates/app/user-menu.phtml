@@ -1,0 +1,10 @@
+<div>
+	<?php if ($this->e($username)):?>
+		Hello <?= $this->e($username); ?>
+	<?php endif; ?>
+	<ul>
+		<li>
+			<a href="<?= $this->e($authUrl) ?>">Login</a>
+		</li>
+	</ul>
+</div>

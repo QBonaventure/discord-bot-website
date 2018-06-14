@@ -1,0 +1,22 @@
+<?php
+
+return [
+    'core-db' => [
+        'host' => '',
+        'port' => '',
+        'user' => '',
+        'password' => '',
+        'database' => '',
+        'cache' => [
+            'server' => '',
+            'timeout' => 2,
+            'version' => '',
+        ],
+    ],
+    'dependencies' => [
+        'factories' => [
+            FTCBotCore\Db\Core::class => FTCBotCore\Container\Db\Core::class,
+            FTCBotCore\Db\DbCacheInterface::class => FTCBotCore\Container\Db\Cache\RedisDbCache::class,
+        ]
+    ]
+];
