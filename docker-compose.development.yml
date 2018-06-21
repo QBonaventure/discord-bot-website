@@ -1,0 +1,43 @@
+version: '3.3'
+
+volumes:
+  websocket_config:
+  core_db:
+  core_cache:
+  redis_data:
+  core_composer_cache:
+  ws_composer_cache:
+  website_composer_cache:
+  website_nginx_logs:
+  
+services:
+  website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    restart: always
+    env_file:
+      - .env
+    expose:
+      - "9000"
+    volumes:
+      - .:/app/:z
+    networks:
+      ftcbot_dev:
+#    command: sh
+    
+  front-server:
+    image: nginx:1.15-alpine
+    ports:
+      - "7610:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:z
+      - ./public:/app/public:z
+      - website_nginx_logs:/var/log/nginx
+    networks:
+      ftcbot_dev:
+      
+networks:
+  ftcbot_dev:
+    external: true

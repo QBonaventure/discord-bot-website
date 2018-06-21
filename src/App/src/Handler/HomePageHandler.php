@@ -37,15 +37,6 @@ class HomePageHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
         $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
-        
-        $session->set('counter', $session->get('counter', 0) + 1);
-
-        if (! $this->template) {
-            return new JsonResponse([
-                'welcome' => 'Congratulations! You have installed the zend-expressive skeleton application.',
-                'docsUrl' => 'https://docs.zendframework.com/zend-expressive/',
-            ]);
-        }
 
         $data = [];
 
@@ -93,7 +84,7 @@ class HomePageHandler implements RequestHandlerInterface
             $data['templateName'] = 'Zend View';
             $data['templateDocs'] = 'https://docs.zendframework.com/zend-view/';
         }
-        $data['eee'] = $session->get('counter');
+
         return new HtmlResponse($this->template->render('app::home-page', $data));
     }
 }

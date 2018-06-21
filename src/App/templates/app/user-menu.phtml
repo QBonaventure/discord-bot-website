@@ -1,10 +1,16 @@
 <div>
-	<?php if ($this->e($username)):?>
+	<?php if ($this->e($username)): ?>
 		Hello <?= $this->e($username); ?>
+    	<ul>
+    		<li>
+    			<a href="<?= $this->url('logout') ?>">Logout</a>
+    		</li>
+    	</ul>
+    <?php else: ?>
+    	<ul>
+    		<li>
+    			<a href="<?= $this->url('login') ?>">Login</a>
+    		</li>
+    	</ul>
 	<?php endif; ?>
-	<ul>
-		<li>
-			<a href="<?= $this->e($authUrl) ?>">Login</a>
-		</li>
-	</ul>
 </div>

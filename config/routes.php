@@ -34,6 +34,7 @@ use Zend\Expressive\MiddlewareFactory;
  */
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container) : void {
     $app->get('/', App\Handler\HomePageHandler::class, 'home');
-    $app->get('/login', App\Handler\LoginHandler::class, 'login');
+    $app->get('/login', App\Session\Handler\LoginHandler::class, 'login');
+    $app->get('/logout', App\Session\Handler\LogoutHandler::class, 'logout');
     $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
 };

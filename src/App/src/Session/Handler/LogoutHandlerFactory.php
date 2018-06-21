@@ -7,7 +7,7 @@ namespace App\Handler;
 use Psr\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
-class LoginHandlerFactory
+class LogoutHandlerFactory
 {
     public function __invoke(ContainerInterface $container) : LoginHandler
     {

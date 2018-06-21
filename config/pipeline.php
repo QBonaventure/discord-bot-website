@@ -25,7 +25,6 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // all Exceptions.
     $app->pipe(ErrorHandler::class);
     $app->pipe(App\SessionMiddleware::class);
-    $app->pipe(AuthenticationMiddleware::class);
     $app->pipe(ServerUrlMiddleware::class);
 //     $app->pipe(UserMiddleware::class);
 
@@ -63,6 +62,9 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
 
     // Seed the UrlHelper with the routing results:
     $app->pipe(UrlHelperMiddleware::class);
+    
+    
+    $app->pipe(AuthenticationMiddleware::class);
 
     // Add more middleware here that needs to introspect the routing results; this
     // might include:

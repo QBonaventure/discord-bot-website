@@ -15,8 +15,9 @@ return [
     ],
     'dependencies' => [
         'factories' => [
-            FTCBotCore\Db\Core::class => FTCBotCore\Container\Db\Core::class,
+            FTC\Discord\Db\Core::class => FTC\Discord\Db\Postgresql\Factory\Core::class,
             FTCBotCore\Db\DbCacheInterface::class => FTCBotCore\Container\Db\Cache\RedisDbCache::class,
-        ]
+            FTC\Discord\Model\GuildMemberRepository::class => FTC\Discord\Db\Postgresql\Factory\GuildMemberRepository::class,
+       ]
     ]
 ];

@@ -1,5 +1,7 @@
 <?php
 return [
-    'owner_id' => '', // Discord user ID of the bot owner
+    'bot' => [
+        'owner_id' => '', // Discord user ID of the bot owner
         'guild_id' => '',
+    ]
 ];
