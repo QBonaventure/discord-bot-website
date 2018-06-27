@@ -24,9 +24,7 @@ class UserMiddleware implements MiddlewareInterface
     
     private $template;
     
-    public function __construct(
-        TemplateRendererInterface $template
-        ) {
+    public function __construct(TemplateRendererInterface $template) {
             $this->template = $template;
     }
     
@@ -34,8 +32,6 @@ class UserMiddleware implements MiddlewareInterface
     {
         $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
         
-//         var_dump($session->get('counter'));
-//         $this->template->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'aze', "dddddd");
         $response = $handler->handle($request);
         return $response;
     }

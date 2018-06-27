@@ -1,0 +1,8 @@
+<section class="members-list-item">
+	<h1><?= $member->getUsername() ?></h1>
+	<div class="member-roles">
+		<?php array_walk($member->getRoles()->toArray(), function ($value) {
+		      echo '<div class="member-role-item">'.$value->getName().'</div>';
+        }); ?>
+	</div>
+</section>
