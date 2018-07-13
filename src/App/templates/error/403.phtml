@@ -1,0 +1,8 @@
+<?php $this->layout('layout::default', ['title' => '403 Unauthorized']) ?>
+
+<h1>Oops!</h1>
+<h2>This is awkward.</h2>
+<p>You don't have access to this page !</p>
+<p>
+Let's go back to the <?php if($this->e($previousUrl)): echo '<a href="'.$previousUrl.'">previous page</a> you were visiting, or maybe the'; endif; ?> <a href="/">Home Page</a>.
+</p>

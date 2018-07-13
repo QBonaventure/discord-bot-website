@@ -1,0 +1,15 @@
+<?php $this->layout('admin::layout', ['title' => 'Home']) ?>
+
+
+
+<section id="roles-list">
+	<h1>Members List</h1>
+		<?php array_walk($members->getIterator(), function($member) use ($roles) {
+		    $this->insert('partials::members/item', ['member' => $member, 'roles' => $roles]);
+		}) ?>
+</section>
+
+
+<?php if ($selectedMember):
+    $this->insert('partials::members/member-info', ['member' => $selectedMember, 'roles' => $roles]);
+endif; ?>

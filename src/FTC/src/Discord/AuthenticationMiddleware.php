@@ -11,6 +11,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 use Discord\OAuth\Discord;
 use PSR7Sessions\Storageless\Http\SessionMiddleware;
+use FTC\Discord\Model\Aggregate\Guild;
 
 class AuthenticationMiddleware implements MiddlewareInterface
 {
@@ -30,8 +31,8 @@ class AuthenticationMiddleware implements MiddlewareInterface
     {
         $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
         
-        $username = $session->get('user')['username'];
-        $this->template->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'username', $username);
+        $username = $session->get('user')['nickname'];
+        $this->template->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'nickname', $username);
         
         return $handler->handle($request);
     }

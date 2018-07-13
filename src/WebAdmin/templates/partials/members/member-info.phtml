@@ -1,0 +1,17 @@
+<section id="member-info">
+	<h1><?= $member->getNickname() ?></h1>
+	
+	<ul id="member-basic-info">
+		<li>
+			<span class="label">Joined on:</span><span><?= $member->getJoinDate()->format('Y-m-d H:i'); ?></span>
+		</li>
+		<li>
+			<span class="label">Roles:</span><span>
+        		<?php array_walk($member->getRolesIds()->getIterator(), function ($roleId) use ($roles) {
+        		    $this->insert('partials::roles/tag', ['role' => $roles->getById($roleId)]);
+                }); ?>
+			</span>
+		</li>
+	</ul>
+		
+</section>

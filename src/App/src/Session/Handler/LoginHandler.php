@@ -11,9 +11,12 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 use Discord\OAuth\Discord;
 use PSR7Sessions\Storageless\Http\SessionMiddleware;
-use FTC\Discord\Model\GuildMemberRepository;
 use Zend\Diactoros\Response\RedirectResponse;
-use FTC\Discord\Model\GuildMember;
+use FTC\Discord\Model\ValueObject\Snowflake\UserId;
+use FTC\Discord\Model\ValueObject\Snowflake\GuildId;
+use FTC\Discord\Model\Aggregate\GuildRepository;
+use FTC\Discord\Model\Aggregate\GuildMember;
+use FTC\Discord\Model\Aggregate\GuildMemberRepository;
 
 class LoginHandler implements MiddlewareInterface
 {
@@ -102,7 +105,8 @@ class LoginHandler implements MiddlewareInterface
         ]);
         
         $discordUser = $this->oauthClient->getResourceOwner($token);
-        $user = $this->userRepo->getGuildMember((int) $this->config['guild_id'], (int) $discordUser->toArray()['id']);
+        $userId = UserId::create((int) $discordUser->toArray()['id']);
+        $user = $this->userRepo->getById($userId);
         
         return $user;
     }

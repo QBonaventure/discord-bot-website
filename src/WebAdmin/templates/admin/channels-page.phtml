@@ -1,0 +1,64 @@
+<?php use FTC\Discord\Model\ValueObject\Permission; ?>
+
+<?php $this->layout('admin::layout', ['title' => 'Home']) ?>
+
+<?php $this->push('stylesheets'); ?>
+	<link rel="stylesheet" type="text/css" href="/assets/stylesheets/admin.css" />
+<?php $this->end(); ?>
+
+
+<section id="roles-list">
+	<h1>Channels List</h1>
+		<?php array_walk($roles->getIterator(), function($role) {
+		    $this->insert('partials::channels/item', ['role' => $role]);
+		}) ?>
+</section>
+
+
+<?php if ($selectedRole): ?>
+	<section id="role-edit">
+		<section value="<?= (int) $selectedRole->can(Permission::ADMINISTRATOR); ?>">
+			<h1>Is an Administrator</h1>
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::VIEW_AUDIT_LOG); ?>">
+			<h1>View Guilds logs</h1>
+			
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::MANAGE_GUILD); ?>">
+			<h1>Manage the guild</h1>
+			
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::MANAGE_ROLES); ?>">
+			<h1>Manage guild roles</h1>
+			
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::MANAGE_CHANNELS); ?>">
+			<h1>Manage guild channels</h1>
+			
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::MANAGE_MESSAGES); ?>">
+			<h1>Manage messages</h1>
+			
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::MANAGE_EMOJIS); ?>">
+			<h1>Manage emojis</h1>
+			
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::MANAGE_WEBHOOKS); ?>">
+			<h1>Create an instant invite</h1>
+			
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::MANAGE_NICKNAMES); ?>">
+			<h1>Create an instant invite</h1>
+			
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::CREATE_INSTANT_INVITE); ?>">
+			<h1>Create an instant invite</h1>
+			
+		</section>
+		<section value="<?= (int) $selectedRole->can(Permission::CREATE_INSTANT_INVITE); ?>">
+			<h1>Create an instant invite</h1>
+			
+		</section>
+	</section>
+<?php endif; ?>

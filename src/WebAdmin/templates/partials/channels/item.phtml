@@ -1,0 +1,18 @@
+<section class="roles-list-item">
+	<h1>
+		<?php switch ($role->getTypeId()) {
+		    case(0):
+		        echo "T - ";
+		        break;
+		    case(2):
+		        echo "V - ";
+		        break;
+		    default:
+		        echo "C - ";
+		}?>
+	<a href="<?= $this->url('admin.roles', ['roleId' => (string) $role->getId()]) ?>">
+		
+			<?= $role->getName() ?>
+		
+	</a></h1>
+</section>

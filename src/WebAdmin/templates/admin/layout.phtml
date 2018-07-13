@@ -1,0 +1,20 @@
+<?php $this->layout('layout::default'); ?>
+
+<?php $this->push('stylesheets'); ?>
+	<link rel="stylesheet" type="text/css" href="/assets/stylesheets/admin.css" />
+<?php $this->end(); ?>
+
+
+<nav>
+	<a href="<?= $this->url('admin.roles'); ?>">
+		Roles
+	</a>
+	<a href="<?= $this->url('admin.members'); ?>">
+		Members
+	</a>
+	<a href="<?= $this->url('admin.channels'); ?>">
+		Channels
+	</a>
+</nav>
+
+<?= $this->section('content') ?>

@@ -13,6 +13,10 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Zend\Expressive\Authorization\Rbac\ConfigProvider::class,
+    \Zend\Expressive\Authorization\Acl\ConfigProvider::class,
+    \Zend\Expressive\Authorization\ConfigProvider::class,
+    \Zend\Expressive\Authentication\ConfigProvider::class,
     FTC\WebAdmin\ConfigProvider::class,
     \Zend\Expressive\Router\FastRouteRouter\ConfigProvider::class,
     \Zend\HttpHandlerRunner\ConfigProvider::class,

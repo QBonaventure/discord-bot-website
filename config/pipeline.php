@@ -16,6 +16,8 @@ use Zend\Expressive\Router\Middleware\RouteMiddleware;
 use Zend\Stratigility\Middleware\ErrorHandler;
 use FTC\Discord\AuthenticationMiddleware;
 use App\Middleware\UserMiddleware;
+use App\Middleware\GuildSetupMiddleware;
+use FTC\Discord\AuthorizationMiddleware;
 
 /**
  * Setup middleware pipeline:
@@ -26,7 +28,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     $app->pipe(ErrorHandler::class);
     $app->pipe(App\SessionMiddleware::class);
     $app->pipe(ServerUrlMiddleware::class);
-//     $app->pipe(UserMiddleware::class);
+    $app->pipe(GuildSetupMiddleware::class);
 
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping
@@ -49,6 +51,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // Register the routing middleware in the middleware pipeline.
     // This middleware registers the Zend\Expressive\Router\RouteResult request attribute.
     $app->pipe(RouteMiddleware::class);
+    $app->pipe(AuthorizationMiddleware::class);
 
     // The following handle routing failures for common conditions:
     // - HEAD request but no routes answer that method
@@ -65,6 +68,7 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     
     
     $app->pipe(AuthenticationMiddleware::class);
+//     $app->pipe(UserMiddleware::class);
 
     // Add more middleware here that needs to introspect the routing results; this
     // might include:

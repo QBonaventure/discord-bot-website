@@ -1,10 +1,11 @@
-<?php $this->layout('layout::default', ['title' => 'Home']) ?>
+<?php $this->layout('admin::layout', ['title' => 'Home']) ?>
 <?php $this->push('stylesheets'); ?>
 	<link rel="stylesheet" type="text/css" href="assets/stylesheets/admin.css" />
 <?php $this->end(); ?>
+
 <section id="members-list">
 	<h1>Members List</h1>
-		<?php array_walk($members->toArray(), function($value) {
-		    $this->insert('partials::members/item', ['member' => $value]);
-		}) ?>    
+		<?php array_walk($members->toArray(), function($member) use ($roles) {
+		    $this->insert('partials::members/item', ['member' => $member, 'roles' => $roles]);
+		}) ?>
 </section>

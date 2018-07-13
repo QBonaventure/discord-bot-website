@@ -28,6 +28,9 @@ class ConfigProvider
             ],
             'factories'  => [
                 Handler\HomePage::class => Handler\HomePageFactory::class,
+                Handler\RolesManagement::class => Handler\RolesManagementFactory::class,
+                Handler\ChannelsManagement::class => Handler\ChannelsManagementFactory::class,
+                Handler\MembersManagement::class => Handler\MembersManagementFactory::class,
             ],
         ];
     }

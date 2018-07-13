@@ -1,0 +1,8 @@
+<section class="roles-list-item">
+	<h1 style="color: #<?= $role->getHTMLColor() ?>;">
+		<a href="<?= $this->url('admin.roles', ['roleId' => (string) $role->getId()]) ?>">
+		
+			<?= $role->getName() ?>
+		
+	</a></h1>
+</section>
