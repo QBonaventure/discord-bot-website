@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace FTC\WebAdmin;
 
 
+use App\Container\Middleware\ActionAbstractFactory;
+
 class ConfigProvider
 {
 
@@ -13,11 +15,18 @@ class ConfigProvider
         return [
             'dependencies' => $this->getDependencies(),
             'templates'    => $this->getTemplates(),
+            'predispatch-pipe' => [
+                Handler\RbacManagement::class => [
+                    Middleware\RbacRemoveRole::class,
+                    Middleware\RbacAddRole::class,
+                ],
+            ],
         ];
     }
 
     public function getDependencies() : array
     {
+        
         return [
             'delegators' => [
                 \Zend\Expressive\Application::class => [
@@ -27,10 +36,13 @@ class ConfigProvider
             'invokables' => [
             ],
             'factories'  => [
-                Handler\HomePage::class => Handler\HomePageFactory::class,
-                Handler\RolesManagement::class => Handler\RolesManagementFactory::class,
-                Handler\ChannelsManagement::class => Handler\ChannelsManagementFactory::class,
-                Handler\MembersManagement::class => Handler\MembersManagementFactory::class,
+                Handler\HomePage::class => Container\Handler\HomePageFactory::class,
+                Handler\RolesManagement::class => ActionAbstractFactory::class,
+                Handler\ChannelsManagement::class => ActionAbstractFactory::class,
+                Handler\MembersManagement::class => ActionAbstractFactory::class,
+                Handler\RbacManagement::class => ActionAbstractFactory::class,
+                Middleware\RbacRemoveRole::class => Container\Middleware\RbacRemoveRoleFactory::class,
+                Middleware\RbacAddRole::class => Container\Middleware\RbacAddRoleFactory::class,
             ],
         ];
     }

@@ -12,4 +12,11 @@
 
 <?php if ($selectedMember):
     $this->insert('partials::members/member-info', ['member' => $selectedMember, 'roles' => $roles]);
-endif; ?>
+else: ?>
+<section>
+    <blockquote class="trello-board-compact">
+      <a href="https://trello.com/b/fzVPOFAL/test">Trello Board</a>
+    </blockquote>
+    <script src="https://p.trellocdn.com/embed.min.js"></script>
+</section>
+<?php endif; ?>

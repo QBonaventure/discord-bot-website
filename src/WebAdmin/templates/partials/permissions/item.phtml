@@ -1,0 +1,25 @@
+<div>
+    <h1>
+    	<?= $routeName ?>
+   	</h1>
+   	<div>
+       	<?php  array_walk($permissions, function($permission) use ($roles, $routeName) { ?>
+       		<div class="removable-item">
+	       		<?php $this->insert('partials::roles/tag', ['role' => $roles->getById($permission->getRoleId())]); ?>
+	       		<a href="<?= $this->url('admin.rbac.remove', ['routeName' => $routeName, 'roleId' => $roles->getById($permission->getRoleId())->getId()]) ?>">
+	       			Remove
+	       		</a>
+	       	</div>
+       	<?php }); ?>
+   		<select onchange="location = this.value;">
+   			<option value="" selected>Select a role to add</option>
+   			<?php
+       			$ids = array_map(function($permission) { return (string) $permission->getRoleId(); }, $permissions);
+       			array_walk($roles->excludeByIds($ids)->getIterator(), function($role) use ($routeName) { ?>
+       			    <option value="<?= $this->url('admin.rbac.add', ['routeName' => $routeName, 'roleId' => (string) $role->getId()]) ?>">
+       			    	<?= $role->getName() ?>
+       			    </option>
+   			<?php }) ?>
+   		</select>
+   	</div>
+</div>

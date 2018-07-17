@@ -13,8 +13,9 @@ use Zend\Expressive\Template\TemplateRendererInterface;
 use FTC\Discord\Model\Aggregate\GuildRoleRepository;
 use FTC\Discord\Model\Aggregate\Guild;
 use FTC\Discord\Model\ValueObject\Snowflake\RoleId;
+use Psr\Http\Server\MiddlewareInterface;
 
-class RolesManagement implements RequestHandlerInterface
+class RolesManagement implements MiddlewareInterface
 {
     
     /**
@@ -35,7 +36,7 @@ class RolesManagement implements RequestHandlerInterface
         $this->rolesRepository = $guildRoleRepository;
     }
 
-    public function handle(ServerRequestInterface $request) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guild = $request->getAttribute(Guild::class);
         $roles = $this->rolesRepository->getAll($guild->getId())->orderByPosition();

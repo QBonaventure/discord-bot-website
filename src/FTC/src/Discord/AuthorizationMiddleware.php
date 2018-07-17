@@ -19,6 +19,10 @@ use FTC\Discord\Model\Collection\GuildWebsitePermissionCollection;
 use Zend\Expressive\Router\RouteResult;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Expressive\Template\TemplateRendererInterface;
+use FTC\Discord\Model\Aggregate\GuildWebsitePermission;
+use FTC\Discord\Model\Aggregate\GuildRoleRepository;
+use FTC\Discord\Model\ValueObject\Permission;
+use FTC\Discord\Model\ValueObject\Snowflake\GuildId;
 
 class AuthorizationMiddleware implements MiddlewareInterface
 {
@@ -29,6 +33,11 @@ class AuthorizationMiddleware implements MiddlewareInterface
      */
     private $rbac;
     
+    
+    /**
+     * @var GuildRoleRepository
+     */
+    private $rolesRepository;
     
     /**
      * @var GuildWebsitePermissionRepository 
@@ -42,17 +51,21 @@ class AuthorizationMiddleware implements MiddlewareInterface
     private $templateRenderer;
     
     
-    public function __construct(Rbac $rbac, GuildWebsitePermissionRepository $permissionRepository, TemplateRendererInterface $template)
+    public function __construct(
+        Rbac $rbac,
+        GuildWebsitePermissionRepository $permissionRepository,
+        GuildRoleRepository $rolesRepository,
+        TemplateRendererInterface $template)
     {
         $this->rbac = $rbac;
         $this->permissionRepository = $permissionRepository;
+        $this->rolesRepository = $rolesRepository;
         $this->templateRenderer = $template;
     }
    
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guild = $request->getAttribute(Guild::class);
-//         var_dump($guild->getOwnerId());
         $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
         $routeName = $request->getAttribute(RouteResult::class)->getMatchedRouteName();
         $everyoneRole = $request->getAttribute('@everyone');
@@ -60,15 +73,19 @@ class AuthorizationMiddleware implements MiddlewareInterface
         $permissions = $this->permissionRepository->getGuildPermissions($guild->getId());
         $this->addRbacRoles($guild->getRoles());
         $this->addRbacPermissions($permissions);
-        
-        $user = $session->get('user');
+
+        if (!$permissions->hasForRoute($routeName)) {
+            $this->addAdministratorPermission($guild->getId(), $routeName);
+        }
         
         $this->templateRenderer->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'rbac', $this->rbac);
         $this->templateRenderer->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'user', $user);
-
+        
         if ($this->rbac->isGranted((string) $everyoneRole->getId(), $routeName)) {
             return $handler->handle($request);
         }
+        
+        $user = $session->get('user');
         if ($user && ($guild->getOwnerId()->get() == $user['user_id'] OR $this->isGranted($user, $routeName))) {
             return $handler->handle($request);
         }
@@ -105,6 +122,16 @@ class AuthorizationMiddleware implements MiddlewareInterface
             $roles->getIterator(),
             function($roleId) { $this->rbac->addRole((string) $roleId); }
         );
+    }
+    
+    private function addAdministratorPermission(GuildId $guildId, string $routeName)
+    {
+        $adminRoles = $this->rolesRepository->findByPermission($guildId, new Permission(Permission::ADMINISTRATOR));
+        
+        array_walk($adminRoles->getIterator(), function ($role) use ($guildId, $routeName) {
+            $newPermission = new GuildWebsitePermission($guildId, $role->getId(), $routeName);
+            $this->permissionRepository->save($newPermission);
+        });
     }
     
 }

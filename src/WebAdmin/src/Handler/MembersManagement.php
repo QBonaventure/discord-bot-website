@@ -14,8 +14,9 @@ use FTC\Discord\Model\Aggregate\Guild;
 use FTC\Discord\Model\ValueObject\Snowflake\RoleId;
 use FTC\Discord\Model\Aggregate\GuildMemberRepository;
 use FTC\Discord\Model\Aggregate\GuildRoleRepository;
+use Psr\Http\Server\MiddlewareInterface;
 
-class MembersManagement implements RequestHandlerInterface
+class MembersManagement implements MiddlewareInterface
 {
     
     /**
@@ -44,7 +45,7 @@ class MembersManagement implements RequestHandlerInterface
         $this->rolesRepository = $rolesRepository;
     }
 
-    public function handle(ServerRequestInterface $request) : ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guild = $request->getAttribute(Guild::class);
         $members = $this->membersRepository->getAll($guild->getId())->orderAlphabetically();

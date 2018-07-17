@@ -1,0 +1,13 @@
+<?php
+
+return [
+    'trello' => [
+        'api-key' => '',
+        'token' => '',
+    ],
+    'dependencies' => [
+        'factories' => [
+            FTC\Trello\Client::class => FTC\Trello\Container\ClientFactory::class,
+        ],
+    ],
+];

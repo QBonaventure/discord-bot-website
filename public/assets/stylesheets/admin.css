@@ -1,5 +1,18 @@
 @CHARSET "UTF-8";
 
+main > nav {
+	height: 50px;
+	padding-top: 4px;
+}
+
+main > nav > a {
+	padding: 5px;
+	float: left;
+	color: #a20000;
+	background-color: #ece5e5;
+}
+
+
 section#roles-list,
 section#members-list
 {

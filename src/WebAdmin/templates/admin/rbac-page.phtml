@@ -1,0 +1,5 @@
+<?php $this->layout('admin::layout', ['title' => 'Home']); ?>
+
+<?php array_walk($permissions, function($permission, $routeName) use ($roles) {;
+    $this->insert('partials::permissions/item', ['permissions' => $permission, 'routeName' => $routeName, 'roles' => $roles]);
+}) ?>

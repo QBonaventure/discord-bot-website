@@ -1,0 +1,7 @@
+<?php
+return [
+    'pushover' => [
+        'user_id' => '',
+        'app_token' => '',
+    ],
+];
