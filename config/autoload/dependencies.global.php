@@ -25,13 +25,14 @@ return [
              */
             FTC\Discord\Model\Service\GuildCreation::class => FTC\Discord\Container\Model\Service\GuildCreationFactory::class,
             
-            FTC\Discord\AuthorizationMiddleware::class => FTC\Discord\AuthorizationMiddlewareFactory::class,
+            App\Middleware\AuthenticationMiddleware::class => App\Container\Middleware\AuthenticationMiddlewareFactory::class,
+            App\Middleware\AuthorizationMiddleware::class => App\Container\Middleware\AuthorizationMiddlewareFactory::class,
             App\Session\Handler\LoginHandler::class => App\Session\Handler\LoginHandlerFactory::class,
             App\Middleware\GuildSetupMiddleware::class => App\Middleware\GuildSetupMiddlewareFactory::class,
             App\Middleware\CommandDispatcherMiddleware::class => App\Container\Middleware\CommandDispatcherMiddlewareFactory::class,
             
             'database' => FTC\Database\ClientFactory::class,
-            'discord_oauth' => FTC\Discord\OAuthFactory::class,
+            'discord_oauth' => App\Container\OAuthFactory::class,
         ],
     ],
 ];

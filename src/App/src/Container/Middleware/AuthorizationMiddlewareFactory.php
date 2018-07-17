@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace FTC\Discord;
+namespace App\Container\Middleware;
 
 use Psr\Container\ContainerInterface;
 use Zend\Permissions\Rbac\Rbac;
 use FTC\Discord\Model\Aggregate\GuildWebsitePermissionRepository;
 use Zend\Expressive\Template\TemplateRendererInterface;
 use FTC\Discord\Model\Aggregate\GuildRoleRepository;
+use App\Middleware\AuthorizationMiddleware;
 
 class AuthorizationMiddlewareFactory
 {

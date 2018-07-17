@@ -14,10 +14,9 @@ use Zend\Expressive\Router\Middleware\ImplicitOptionsMiddleware;
 use Zend\Expressive\Router\Middleware\MethodNotAllowedMiddleware;
 use Zend\Expressive\Router\Middleware\RouteMiddleware;
 use Zend\Stratigility\Middleware\ErrorHandler;
-use FTC\Discord\AuthenticationMiddleware;
-use App\Middleware\UserMiddleware;
 use App\Middleware\GuildSetupMiddleware;
-use FTC\Discord\AuthorizationMiddleware;
+use App\Middleware\AuthenticationMiddleware;
+use App\Middleware\AuthorizationMiddleware;
 
 /**
  * Setup middleware pipeline:

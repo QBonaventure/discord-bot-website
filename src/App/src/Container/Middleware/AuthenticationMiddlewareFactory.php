@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FTC\Discord;
+namespace App\Container\Middleware;
 
 use Psr\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
+use App\Middleware\AuthenticationMiddleware;
 
 class AuthenticationMiddlewareFactory
 {

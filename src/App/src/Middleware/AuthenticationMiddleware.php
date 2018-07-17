@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FTC\Discord;
+namespace App\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
