@@ -1,7 +1,7 @@
 <?php
 return [
     'bot' => [
-        'owner_id' => '', // Discord user ID of the bot owner
-        'guild_id' => '',
-    ]
+        'owner_id' => getenv('FTCBOT_OWNER_ID'), // Discord user ID of the bot owner
+        'guild_id' =>  getenv('FTCBOT_GUILD_ID'),
+    ],
 ];

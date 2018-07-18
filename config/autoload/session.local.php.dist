@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 return [
     'session' => [
-        'key' => '',
+        'key' => getenv('FTC_WEBSITE_SESSION_KEY'),
         'expiration_time' => 1800,
         'cookie_name' => 'slsession',
         'discord_oauth' => [
-            'clientId' => '',
-            'clientSecret' => '',
-            'redirectUri' => '',
+            'clientId' => getenv('FTCBOT_DISCORD_CLIENT_ID'),
+            'clientSecret' => getenv('FTCBOT_DISCORD_TOKEN'),
+            'redirectUri' => getenv('FTC_WEBSITE_SESSION_REDIRECT_URI'),
         ],
     ],
     'dependencies' => [
