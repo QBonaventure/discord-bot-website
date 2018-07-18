@@ -44,16 +44,23 @@
 		}, {
 			"type" : "vcs",
 			"url" : "https://github.com/qbonaventure/discord-model"
+		}, {
+			"type" : "vcs",
+			"url" : "https://github.com/qbonaventure/discord-website-pushover"
+		}, {
+			"type" : "vcs",
+			"url" : "https://github.com/qbonaventure/discord-website-trello"
 		}
 	],
 	"require" : {
 		"php": "^7.1",
 		"league/tactician": "^1.0",
 		"league/tactician-container": "^2.0",
-		"leonardoteixeira/pushover": "^1.2",
 		"psr7-sessions/storageless": "^4.0",
 		"qbonaventure/discord-db-postgresql": "dev-master",
 		"qbonaventure/discord-model": "dev-master",
+		"qbonaventure/discord-website-pushover": "dev-master",
+		"qbonaventure/discord-website-trello": "dev-master",
 		"roave/security-advisories": "dev-master",
 		"team-reflex/oauth2-discord": "^1.0",
 		"zendframework/zend-auradi-config": "^1.0",
@@ -80,9 +87,7 @@
 	"autoload" : {
 		"psr-4" : {
 			"App\\" : "src/App/src/",
-			"FTC\\WebAdmin\\": "src/WebAdmin/src/",
-			"FTC\\": "src/FTC/src/",
-			"FTC\\Trello\\": "src/Trello/src/"
+			"FTC\\WebAdmin\\" : "src/WebAdmin/src/"
 		}
 	},
 	"autoload-dev" : {

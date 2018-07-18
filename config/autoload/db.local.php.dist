@@ -2,15 +2,15 @@
 
 return [
     'core-db' => [
-        'host' => '',
-        'port' => '',
-        'user' => '',
-        'password' => '',
-        'database' => '',
+        'host' => getenv('FTCBOT_DB_HOST'),
+        'port' => getenv('FTCBOT_DB_PORT'),
+        'user' => getenv('FTCBOT_DB_USER'),
+        'password' => getenv('FTCBOT_DB_PASSWORD'),
+        'database' => getenv('FTCBOT_DB_DBNAME'),
         'cache' => [
-            'server' => '',
+            'server' => getenv('FTCBOT_DB_CACHE_SERVER'),
             'timeout' => 2,
-            'version' => '',
+            'version' => getenv('FTCBOT_DB_CACHE_VERSION'),
         ],
     ],
     'dependencies' => [
