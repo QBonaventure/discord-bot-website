@@ -31,8 +31,13 @@ class AuthenticationMiddleware implements MiddlewareInterface
     {
         $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
         
-        $username = $session->get('user')['nickname'];
-        $this->template->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'nickname', $username);
+        if (!$user = $session->get('user')) {
+            $user = [
+                'roles' => [$request->getAttribute(Guild::class)->getId()->__toString()],
+            ];
+        }
+        
+        $this->template->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'user', $user);
         
         return $handler->handle($request);
     }

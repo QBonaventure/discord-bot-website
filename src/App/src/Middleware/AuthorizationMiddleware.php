@@ -79,7 +79,6 @@ class AuthorizationMiddleware implements MiddlewareInterface
         }
         
         $this->templateRenderer->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'rbac', $this->rbac);
-        $this->templateRenderer->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'user', $user);
         
         if ($this->rbac->isGranted((string) $everyoneRole->getId(), $routeName)) {
             return $handler->handle($request);
@@ -87,6 +86,7 @@ class AuthorizationMiddleware implements MiddlewareInterface
         
         $user = $session->get('user');
         if ($user && ($guild->getOwnerId()->get() == $user['user_id'] OR $this->isGranted($user, $routeName))) {
+            $this->templateRenderer->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'user', $user);
             return $handler->handle($request);
         }
         

@@ -42,14 +42,16 @@
                                 La Commu
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="<?= $this->url('admin.home') ?>" class="nav-link">
-                                Administration
-                            </a>
-                        </li>
+                        	<?php if ($user['user_id']): ?>
+                            <li class="nav-item">
+                                <a href="<?= $this->url('admin.home') ?>" class="nav-link">
+                                    Administration
+                                </a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
-                <?= $nickname ?>
+                <?= $user['nickname'] ?>
                 <?= $this->insert('app::user-menu')?>
             </div>
         </nav>
