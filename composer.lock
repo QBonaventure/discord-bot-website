@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "213f7915fa0fe0d1aeeb0df753fa2b7f",
+    "content-hash": "dad9afe91e6548dd05db7e5b392221ec",
     "packages": [
         {
             "name": "aura/di",
@@ -1852,12 +1852,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/QBonaventure/discord-model.git",
-                "reference": "fbddd13ba38ae743457d4cf74e7c83ac4020c2d5"
+                "reference": "e5d417abceeb886e5410d83e070444b593f26027"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/QBonaventure/discord-model/zipball/fbddd13ba38ae743457d4cf74e7c83ac4020c2d5",
-                "reference": "fbddd13ba38ae743457d4cf74e7c83ac4020c2d5",
+                "url": "https://api.github.com/repos/QBonaventure/discord-model/zipball/e5d417abceeb886e5410d83e070444b593f26027",
+                "reference": "e5d417abceeb886e5410d83e070444b593f26027",
                 "shasum": ""
             },
             "require-dev": {
@@ -1881,7 +1881,7 @@
                     "email": "quentin@bonaventure.xyz"
                 }
             ],
-            "time": "2018-07-17T14:13:46+00:00"
+            "time": "2018-07-19T09:05:17+00:00"
         },
         {
             "name": "qbonaventure/discord-website-pushover",
@@ -1889,12 +1889,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/QBonaventure/discord-website-pushover.git",
-                "reference": "a352f99803e157a0d3b67d9a5f97ef189be11b71"
+                "reference": "f1db5d33f40d66e164b0ccafa836ad59596725d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/QBonaventure/discord-website-pushover/zipball/a352f99803e157a0d3b67d9a5f97ef189be11b71",
-                "reference": "a352f99803e157a0d3b67d9a5f97ef189be11b71",
+                "url": "https://api.github.com/repos/QBonaventure/discord-website-pushover/zipball/f1db5d33f40d66e164b0ccafa836ad59596725d6",
+                "reference": "f1db5d33f40d66e164b0ccafa836ad59596725d6",
                 "shasum": ""
             },
             "require": {
@@ -1923,7 +1923,7 @@
                     "email": "quentin@bonaventure.xyz"
                 }
             ],
-            "time": "2018-07-18T13:31:30+00:00"
+            "time": "2018-07-19T08:50:29+00:00"
         },
         {
             "name": "qbonaventure/discord-website-trello",
@@ -1931,13 +1931,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/QBonaventure/discord-website-trello.git",
-                "reference": "1fe7260b92b6020f26231dcd2c0b543dafafe67e"
+                "reference": "434292e1b1faeff863e71e18d0143e65b004e848"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/QBonaventure/discord-website-trello/zipball/1fe7260b92b6020f26231dcd2c0b543dafafe67e",
-                "reference": "1fe7260b92b6020f26231dcd2c0b543dafafe67e",
+                "url": "https://api.github.com/repos/QBonaventure/discord-website-trello/zipball/434292e1b1faeff863e71e18d0143e65b004e848",
+                "reference": "434292e1b1faeff863e71e18d0143e65b004e848",
                 "shasum": ""
+            },
+            "require": {
+                "composer/composer": "^1.6"
             },
             "type": "library",
             "extra": {
@@ -1960,7 +1963,7 @@
                     "email": "quentin@bonaventure.xyz"
                 }
             ],
-            "time": "2018-07-19T07:45:37+00:00"
+            "time": "2018-07-19T09:00:35+00:00"
         },
         {
             "name": "rmccue/requests",

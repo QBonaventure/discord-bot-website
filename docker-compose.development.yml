@@ -9,6 +9,7 @@ volumes:
   ws_composer_cache:
   website_composer_cache:
   website_nginx_logs:
+  website_public_folder:
   
 services:
   website:
@@ -23,17 +24,16 @@ services:
       - "9000"
     volumes:
       - .:/app/:z
+      - website_public_folder:/app/public:z
     networks:
       ftcbot_dev:
-#    command: sh
     
   front-server:
-    image: nginx:1.15-alpine
+    image: nginx-test
     ports:
       - "7610:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/ftcbot.conf:z
-      - ./public:/app/public:z
+      - website_public_folder:/app/public:z
       - website_nginx_logs:/var/log/nginx
     networks:
       ftcbot_dev:

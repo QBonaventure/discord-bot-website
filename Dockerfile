@@ -11,7 +11,6 @@ RUN apk --update --no-cache add \
     mkdir /app && \
     rm -rf /var/cache/apk/*
 
-
 WORKDIR /app
 
 COPY ./src/ /app/src/
@@ -21,7 +20,18 @@ COPY ./composer.* /app/
 COPY ./data/ /app/data/
 COPY entrypoint.sh /
 
-#CMD ["php-fpm"]
+RUN  cd /app && composer install --no-dev && \
+  rm /app/composer.json && rm /app/composer.lock
+
+RUN cp /app/config/autoload/bot.local.php.dist /app/config/autoload/bot.local.php && \
+    cp /app/config/autoload/db.local.php.dist /app/config/autoload/db.local.php && \
+    cp /app/config/autoload/session.local.php.dist /app/config/autoload/session.local.php && \
+    cp /app/vendor/qbonaventure/discord-website-trello/config/trello.local.php.dist /app/config/autoload/trello.local.php && \
+    cp /app/vendor/qbonaventure/discord-website-pushover/config/pushover.local.php.dist /app/config/autoload/pushover.local.php
+
 RUN chmod +x /entrypoint.sh && \
   chmod a+w /app/data/cache/
+  
+
+  
 ENTRYPOINT ["/entrypoint.sh"]

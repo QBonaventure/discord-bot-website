@@ -2,6 +2,7 @@ version: '3.3'
 volumes:
   website_composer_cache:
   website_nginx_logs:
+  website_public_volume:
   
 services:
   website:
@@ -12,6 +13,7 @@ services:
       - .env
     volumes:
       - website_composer_cache:/app/vendor
+      - website_public_volume:/app/public
     deploy:
       labels :
         ftcbot.service: core
@@ -25,16 +27,15 @@ services:
       ftcbot:
     
   front-server:
-    image: nginx:1.15-alpine
+    image: nginx-test
+#    image: qbonaventure/discord-website-server:1
     ports:
       - "7612:80"
-      - "7613:443"
     links: 
       - website
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:z
-      - ./public:/app/public:z
       - website_nginx_logs:/var/log/nginx
+      - website_public_volume:/app/public
     deploy:
       labels:
         ftcbot.service: website-front-server
