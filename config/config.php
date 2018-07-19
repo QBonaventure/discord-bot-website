@@ -13,7 +13,6 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
-    \FTC\Trello\ConfigProvider::class,
     \FTC\Notifier\Pushover\ConfigProvider::class,
     \FTC\Trello\ConfigProvider::class,
     \Zend\Expressive\Authorization\Rbac\ConfigProvider::class,
