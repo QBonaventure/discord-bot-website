@@ -38,6 +38,20 @@
 		"slack" : "https://zendframework-slack.herokuapp.com",
 		"forum" : "https://discourse.zendframework.com/c/questions/expressive"
 	},
+	"repositories" : [{
+			"type" : "vcs",
+			"url" : "https://github.com/qbonaventure/discord-db-postgresql"
+		}, {
+			"type" : "vcs",
+			"url" : "https://github.com/qbonaventure/discord-model"
+		}, {
+			"type" : "vcs",
+			"url" : "https://github.com/qbonaventure/discord-website-pushover"
+		}, {
+			"type" : "vcs",
+			"url" : "https://github.com/qbonaventure/discord-website-trello"
+		}
+	],
 	"require" : {
 		"php": "^7.1",
 		"league/tactician": "^1.0",
