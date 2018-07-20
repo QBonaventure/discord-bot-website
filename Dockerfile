@@ -16,6 +16,7 @@ WORKDIR /app
 COPY ./src/ /app/src/
 COPY ./public/ /app/public/
 COPY ./config/ /app/config/
+COPY ./bin/ /app/bin
 COPY ./composer.* /app/
 COPY ./data/ /app/data/
 COPY entrypoint.sh /
