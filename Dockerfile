@@ -20,8 +20,7 @@ COPY ./composer.* /app/
 COPY ./data/ /app/data/
 COPY entrypoint.sh /
 
-RUN  cd /app && composer install --no-dev && \
-  rm /app/composer.json && rm /app/composer.lock
+RUN  cd /app && composer install --no-dev
 
 RUN cp /app/config/autoload/bot.local.php.dist /app/config/autoload/bot.local.php && \
     cp /app/config/autoload/db.local.php.dist /app/config/autoload/db.local.php && \
