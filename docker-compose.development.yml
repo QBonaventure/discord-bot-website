@@ -18,6 +18,8 @@ services:
       dockerfile: Dockerfile
     tty: true
     restart: always
+    external_links:
+      - core-db
     env_file:
       - .env
     expose:

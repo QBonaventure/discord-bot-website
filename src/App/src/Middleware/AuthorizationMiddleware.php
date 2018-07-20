@@ -90,10 +90,9 @@ class AuthorizationMiddleware implements MiddlewareInterface
             return $handler->handle($request);
         }
         
-        
         $previousUrl = $request->getHeaders()['referer'][0];
-        $response = new HtmlResponse($this->templateRenderer->render("error::403", ['previousUrl' => $previousUrl]));
-        return $response->withStatus(403);
+        
+        return new HtmlResponse($this->templateRenderer->render("error::403", ['previousUrl' => $previousUrl], 403));
     }
     
     

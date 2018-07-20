@@ -8,9 +8,9 @@ return [
         'password' => getenv('FTCBOT_DB_PASSWORD'),
         'database' => getenv('FTCBOT_DB_DBNAME'),
         'cache' => [
-            'server' => getenv('FTCBOT_DB_CACHE_SERVER'),
+            'server' => getenv('FTCBOT_CORE_CACHE_SERVER'),
             'timeout' => 2,
-            'version' => getenv('FTCBOT_DB_CACHE_VERSION'),
+            'version' => getenv('FTCBOT_CORE_CACHE_VERSION'),
         ],
     ],
     'dependencies' => [

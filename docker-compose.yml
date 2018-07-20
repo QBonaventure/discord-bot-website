@@ -6,7 +6,8 @@ volumes:
   
 services:
   website:
-    image: qbonaventure/discord-bot-website:latest
+#    image: qbonaventure/discord-bot-website:latest
+    image: discord-bot-website-test
     tty: true
     restart: always
     env_file:
@@ -25,10 +26,29 @@ services:
         condition: on-failure
     networks:
       ftcbot:
+      
+  traefik:
+    image: traefik
+    command: -c /dev/null --api --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8081:8080"
+    stop_grace_period: 1m30s
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role==manager]
     
   front-server:
-    image: nginx-test
-#    image: qbonaventure/discord-website-server:1
+    image: qbonaventure/discord-website-server:1
     ports:
       - "7612:80"
     links: 
