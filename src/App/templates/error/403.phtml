@@ -3,6 +3,13 @@
 <h1>Oops!</h1>
 <h2>This is awkward.</h2>
 <p>You don't have access to this page !</p>
-<p>
-Let's go back to the <?php if($this->e($previousUrl)): echo '<a href="'.$previousUrl.'">previous page</a> you were visiting, or maybe the'; endif; ?> <a href="/">Home Page</a>.
-</p>
+
+<?php if ($user['user_id']): ?>
+    <p>
+	    Let's <a href="<?= $this->url('login') ?>">login</a> or back to the <?php if($this->e($previousUrl)): echo '<a href="'.$previousUrl.'">previous page</a> you were visiting, or maybe the'; endif; ?> <a href="/">Home Page</a>.
+    </p>
+<?php else: ?>
+	<p>
+		Please <a href="<?= $this->url('login') ?>">login</a> !</p>
+	<p>
+<?php endif; ?>
