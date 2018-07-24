@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.6'
 
 volumes:
   websocket_config:
@@ -9,7 +9,6 @@ volumes:
   ws_composer_cache:
   website_composer_cache:
   website_nginx_logs:
-  website_public_folder:
   
 services:
   website:
@@ -26,20 +25,29 @@ services:
       - "9000"
     volumes:
       - .:/app/:z
-      - website_public_folder:/app/public:z
     networks:
       ftcbot_dev:
     
   front-server:
-    image: nginx-test
+    image: qbonaventure/discord-website-server:1
     ports:
       - "7610:80"
     volumes:
-      - website_public_folder:/app/public:z
+      - .:/app:z
       - website_nginx_logs:/var/log/nginx
+    labels:
+      traefik.enable: true
+      traefik.backend: discord_website
+      traefik.frontend.rule: Host:ftcbot-dev.test
+      traefik.docker.network: traefik
+      traefik.port: 80
     networks:
       ftcbot_dev:
+      traefik:
+
       
 networks:
   ftcbot_dev:
+    external: true
+  traefik:
     external: true
