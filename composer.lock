@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dad9afe91e6548dd05db7e5b392221ec",
+    "content-hash": "2eeb91f68cb2b968b7e7d4259283022e",
     "packages": [
         {
             "name": "aura/di",
@@ -58,6 +58,47 @@
                 "di container"
             ],
             "time": "2017-07-30T04:14:30+00:00"
+        },
+        {
+            "name": "cheprasov/php-redis-client",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cheprasov/php-redis-client.git",
+                "reference": "0a5e7a437b696bd7e300ddf719b0a277589ed7d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cheprasov/php-redis-client/zipball/0a5e7a437b696bd7e300ddf719b0a277589ed7d5",
+                "reference": "0a5e7a437b696bd7e300ddf719b0a277589ed7d5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "cheprasov/php-extra-mocks": "^1.0.0",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "RedisClient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Cheprasov",
+                    "email": "acheprasov84@gmail.com"
+                }
+            ],
+            "description": "Php client for Redis. It is a fast, fully-functional and user-friendly client for Redis, optimized for performance. RedisClient supports the latest versions of Redis starting from 2.6 to 4.0",
+            "homepage": "http://github.com/cheprasov/php-redis-client",
+            "time": "2018-03-08T18:25:41+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -5830,7 +5871,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.1"
+        "php": "^7.2"
     },
     "platform-dev": []
 }

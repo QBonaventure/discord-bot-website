@@ -5,6 +5,7 @@ namespace App\Session\Handler;
 use Psr\Container\ContainerInterface;
 use FTC\Discord\Model\Aggregate\GuildRepository;
 use FTC\Discord\Model\Aggregate\GuildMemberRepository;
+use App\Cache\WebsiteCacheInterface;
 
 class LoginHandlerFactory
 {
@@ -15,7 +16,8 @@ class LoginHandlerFactory
         $config = array_merge($sessionConfig, $botConfig);
         $oauth = $container->get('discord_oauth');
         $repository = $container->get(GuildMemberRepository::class);
+        $cache = $container->get(WebsiteCacheInterface::class);
         
-        return new LoginHandler($repository, $oauth, $config);
+        return new LoginHandler($repository, $oauth, $cache, $config);
     }
 }

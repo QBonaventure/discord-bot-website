@@ -9,6 +9,7 @@ volumes:
   ws_composer_cache:
   website_composer_cache:
   website_nginx_logs:
+  website_cache_data:
   
 services:
   website:
@@ -38,13 +39,22 @@ services:
     labels:
       traefik.enable: true
       traefik.backend: discord_website
-      traefik.frontend.rule: Host:ftcbot-dev.test
+      traefik.frontend.rule: HostRegexp:ftcbot-dev.test, {subdomain:.+}.ftcbot-dev.test
+      traefik.frontend.priority: 1
       traefik.docker.network: traefik
       traefik.port: 80
     networks:
       ftcbot_dev:
       traefik:
 
+  website-cache:
+    image: redis:alpine
+    expose:
+      - "6379"
+    volumes:
+      - website_cache_data:/data:z
+    networks:
+      ftcbot_dev:
       
 networks:
   ftcbot_dev:

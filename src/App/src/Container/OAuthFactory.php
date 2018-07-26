@@ -10,7 +10,7 @@ class OAuthFactory
     public function __invoke(ContainerInterface $container) : Discord
     {
         $config = $container->get('config')->offsetGet('session')['discord_oauth'];
-        
+        $config['redirectUri'] = 'http://'.$_SERVER['HTTP_HOST'].'/login';
         return new Discord($config);
     }
 }

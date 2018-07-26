@@ -62,14 +62,8 @@ class HomePage implements RequestHandlerInterface
         $boards = $this->trelloClient->getBoards();
         $board = $boards->first();
         
-//         array_walk($boards->toArray(), function($board) { var_dump($board->getName());});
-//         var_dump($this->trelloClient->getBoardCards($board));
-        
         $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
 
-        $data['members'] = $this->memberRepository->getAll(GuildId::create(384396784807575552));
-        $data['roles'] = $this->rolesRepository->getAll(GuildId::create(384396784807575552));
-        
         return new HtmlResponse($this->template->render('admin::home-page', $data));
     }
 }

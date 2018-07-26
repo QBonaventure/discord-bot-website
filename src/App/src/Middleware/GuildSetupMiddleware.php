@@ -43,17 +43,24 @@ class GuildSetupMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $domainName = DomainName::create($request->getHeader('host')[0]);
-        $guild = $this->guildRepository->findByDomainName($domainName);
-        if (!$guild) {
-            $previousUrl = $request->getHeaders()['referer'][0];
-            return new HtmlResponse($this->templateRenderer->render("error::404", ['previousUrl' => $previousUrl], 404));
-        }
-        $everyoneRole = $this->guildRoleRepository->getEveryoneRole($guild->getId());
         
-        $request = $request->withAttribute(Guild::class, $guild);
-        $request = $request->withAttribute('@everyone', $everyoneRole);
+        if ((string) $domainName === 'dftcbot-dev.test') {
+            return  $handler->handle($request);
+        }
+        
+        if ($guild = $this->guildRepository->findByDomainName($domainName)) {
+            $everyoneRole = $this->guildRoleRepository->getEveryoneRole($guild->getId());
+            
+            $request = $request->withAttribute(Guild::class, $guild);
+            $request = $request->withAttribute('@everyone', $everyoneRole);
+            $this->templateRenderer->addDefaultParam(TemplateRendererInterface::TEMPLATE_ALL, 'guildInfo', $guild);
+            return  $handler->handle($request);
+        }
+        
+        
+        $previousUrl = $request->getHeaders()['referer'][0];
+        return new HtmlResponse($this->templateRenderer->render("error::404", ['previousUrl' => $previousUrl], 404));
 
-        return  $handler->handle($request);
     }
     
 }

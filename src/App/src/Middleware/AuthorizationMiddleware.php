@@ -66,6 +66,11 @@ class AuthorizationMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guild = $request->getAttribute(Guild::class);
+        
+        if (!$guild) {
+            return $handler->handle($request);
+        }
+        
         $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
         $routeName = $request->getAttribute(RouteResult::class)->getMatchedRouteName();
         $everyoneRole = $request->getAttribute('@everyone');

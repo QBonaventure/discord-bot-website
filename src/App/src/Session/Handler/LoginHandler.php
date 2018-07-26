@@ -17,6 +17,9 @@ use FTC\Discord\Model\ValueObject\Snowflake\GuildId;
 use FTC\Discord\Model\Aggregate\GuildRepository;
 use FTC\Discord\Model\Aggregate\GuildMember;
 use FTC\Discord\Model\Aggregate\GuildMemberRepository;
+use RedisClient\RedisClient;
+use App\Cache\WebsiteCacheInterface;
+use function GuzzleHttp\Psr7\parse_query;
 
 class LoginHandler implements MiddlewareInterface
 {
@@ -46,15 +49,22 @@ class LoginHandler implements MiddlewareInterface
      */
     private $config;
     
+    /**
+     * @var WebsiteCacheInterface
+     */
+    private $cache;
+    
     
     public function __construct(
         GuildMemberRepository $userRepo,
         Discord $oauthClient,
+        WebsiteCacheInterface $cache,
         array $config
         ) {
             $this->oauthClient = $oauthClient;
             $this->config = $config;
             $this->userRepo = $userRepo;
+            $this->cache = $cache;
     }
     
     
@@ -62,38 +72,29 @@ class LoginHandler implements MiddlewareInterface
     {
         $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
         $params = $request->getQueryParams();
-        
+
         $redirectRoute = $request->getCookieParams()[self::REFERER_COOKIE_NAME]
             ?? $request->getHeaders()['referer'][0]
             ?? self::REDIRECT_ROUTE;
         
-        if ($params['code']) {
-            $this->removeRefererCookie();
+        if ($params['code'] && $redirectRoute = $this->cache->getLoginRedirectUrl($params['state'])) {
             $user = $this->getLoggedInUser($params['code']);
             $session->set('user', $user->toArray());
-            
+
             return new RedirectResponse($redirectRoute);
         }
         
-        $this->setRefererCookie($request->getRequestTarget(), $redirectRoute);
+        $state = bin2hex(random_bytes(32));
+        $url = $this->getAuthorizationUrl($state);
 
-        return new RedirectResponse($this->oauthClient->getAuthorizationUrl());
+        $this->cache->setLoginRedirectUrl($state, $redirectRoute);
+        
+        return new RedirectResponse($url);
     }
     
-    
-    private function removeRefererCookie() : void
+    private function getAuthorizationUrl($state)
     {
-        unset($_COOKIE[self::REFERER_COOKIE_NAME]);
-    }
-    
-    private function setRefererCookie(string $requestTarget, string $url) : bool
-    {
-        return setcookie(
-            self::REFERER_COOKIE_NAME,
-            $url,
-            time()+self::REFERER_COOKIE_EXPIRATION,
-            $requestTarget
-            );
+        return $this->oauthClient->getAuthorizationUrl(['state' => $state, 'redirectUri' => "lkjkjkljkljkljlkjlkj"]);
     }
     
     
@@ -102,6 +103,7 @@ class LoginHandler implements MiddlewareInterface
         $token = $this->oauthClient->getAccessToken('authorization_code', [
             'code' => $code,
             'client_id'     => $this->config['discord_oauth']['clientId'],
+            'redirectUri' => "oooooooooooooooooooo",
         ]);
         
         $discordUser = $this->oauthClient->getResourceOwner($token);
