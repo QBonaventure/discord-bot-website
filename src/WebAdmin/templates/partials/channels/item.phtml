@@ -1,6 +1,6 @@
-<section class="roles-list-item">
+<section class="channels-list-item">
 	<h1>
-		<?php switch ($role->getTypeId()) {
+		<?php switch ($channel->getTypeId()) {
 		    case(0):
 		        echo "T - ";
 		        break;
@@ -10,9 +10,9 @@
 		    default:
 		        echo "C - ";
 		}?>
-	<a href="<?= $this->url('admin.roles', ['roleId' => (string) $role->getId()]) ?>">
+	<a href="<?= $this->url('admin.channels', ['channelId' => (string) $channel->getId()]) ?>">
 		
-			<?= $role->getName() ?>
+			<?= $channel->getName() ?>
 		
 	</a></h1>
 </section>

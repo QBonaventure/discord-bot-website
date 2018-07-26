@@ -14,6 +14,9 @@ use FTC\Discord\Model\Aggregate\Guild;
 use FTC\Discord\Model\ValueObject\Snowflake\RoleId;
 use FTC\Discord\Model\Aggregate\GuildChannelRepository;
 use Psr\Http\Server\MiddlewareInterface;
+use FTC\Discord\Model\ValueObject\Snowflake\ChannelId;
+use FTC\Discord\Model\Aggregate\GuildMessageRepository;
+use FTC\Discord\Model\Aggregate\GuildMemberRepository;
 
 class ChannelsManagement implements MiddlewareInterface
 {
@@ -24,6 +27,16 @@ class ChannelsManagement implements MiddlewareInterface
     private $channelsRepository;
     
     /**
+     * @var GuildMessageRepository
+     */
+    private $guildMessageRepository;
+    
+    /**
+     * @var GuildMemberRepository
+     */
+    private $guildMembersRepository;
+    
+    /**
      * @var TemplateRendererInterface
      */
     private $template;
@@ -31,22 +44,29 @@ class ChannelsManagement implements MiddlewareInterface
 
     public function __construct(
         Template\TemplateRendererInterface $template = null,
-        GuildChannelRepository $guildChannelRepository
-    ) {
+        GuildChannelRepository $guildChannelRepository,
+        GuildMessageRepository $guildMessageRepository,
+        GuildMemberRepository $guildMembersRepository
+        ) {
         $this->template = $template;
         $this->channelsRepository = $guildChannelRepository;
+        $this->guildMessageRepository = $guildMessageRepository;
+        $this->guildMembersRepository = $guildMembersRepository;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $guild = $request->getAttribute(Guild::class);
-        $roles = $this->channelsRepository->getAll($guild->getId())->displayOrder();
+        $channels = $this->channelsRepository->getAll($guild->getId())->displayOrder();
         
-        if ($selectedRoleId = (int) $request->getAttribute('roleId')) {
-            $data['selectedRole'] = $roles->getById(RoleId::create($selectedRoleId));
+        if ($selectedRoleId = (int) $request->getAttribute('channelId')) {
+            $channelId = ChannelId::create($selectedRoleId);
+            $data['selectedChannel'] = $channels->getById($channelId);
+            $data['selectedChannelMessages'] = $this->guildMessageRepository->getAllForChannel($channelId);
+            $data['members'] = $this->guildMembersRepository->getAll($guild->getId());
         }
         
-        $data['roles'] = $roles;
+        $data['channels'] = $channels;
 
         
         return new HtmlResponse($this->template->render('admin::channels-page', $data));

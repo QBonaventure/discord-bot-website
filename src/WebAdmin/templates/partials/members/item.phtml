@@ -1,8 +1,6 @@
 <section class="members-list-item">
 	<h1>
-		<a href="<?= $this->url('admin.members', ['memberId' => (string) $member->getId()]) ?>">
-			<?= $member->getNickname() ?>
-		</a>
+		    <?php $this->insert('partials::members/url', ['member' => $member]); ?>
 	</h1>
 	<div class="member-roles">
 		<?php array_walk($member->getRolesIds()->getIterator(), function ($roleId) use ($roles) {

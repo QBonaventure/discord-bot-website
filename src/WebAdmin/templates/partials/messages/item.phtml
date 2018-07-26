@@ -1,0 +1,21 @@
+<?php
+use FTC\Discord\Model\Aggregate\GuildMessage;
+use FTC\Discord\Model\Collection\GuildMemberCollection;
+/**
+ * @var GuildMessage $message
+ * @var GuildMemberCollection $members
+ */
+?>
+
+<section class="discord-message">
+	<header>
+		<section class="message-author">
+		    <?php $this->insert('partials::members/url', ['member' => $members->getById($message->getAuthorId())]); ?>
+		</section>
+		<section><?= $message->getCreationTime()->format('Y-m-d H:i:s') ?></section>
+		<?php if ($message->getUpdateTime()): ?>
+			<section><?= $message->getUpdateTime()->format('Y-m-d H:i:s') ?></section>
+		<?php endif; ?>
+	</header>
+	<article><?= $message->getContent() ?></article>
+</section>

@@ -13,6 +13,7 @@ main > nav > a {
 }
 
 
+section#channels-list,
 section#roles-list,
 section#members-list
 {
@@ -23,6 +24,7 @@ section#members-list
 	float: left;
 }
 
+section#channels-list > h1,
 section#roles-list > h1,
 section#members-list > h1
 {
@@ -31,6 +33,7 @@ section#members-list > h1
 }
 
 
+section.channels-list-item,
 section.roles-list-item,
 section.members-list-item
 {
@@ -39,6 +42,7 @@ section.members-list-item
 }
 
 
+section.channels-list-item > h1,
 section.roles-list-item > h1,
 section.members-list-item > h1
 {
@@ -110,6 +114,62 @@ span.member-role-item
 	text-align: right;
 	clear:both;
 }
+
+
+.discord-channel
+{
+    width: 65%;
+    float: right;
+}
+
+.discord-message
+{
+	background-color: #2C2F33;
+    color: #bbb;
+	padding: 7px;
+}
+
+.discord-message header
+{
+    height: 30px;
+    padding-top: 4px;
+}
+
+.discord-message:not(:first-child) header
+{
+    border-top: 1px solid grey;
+}
+
+.discord-message header section:not(:first-child)
+{
+    color: #666;
+    font-size: 11px;
+    margin: 4px;
+}
+
+
+.discord-message header section
+{
+	float: left;
+	margin: 0 10px;
+}
+
+.discord-message
+{
+    clear: both;
+}
+	
+.message-author a
+{
+    color: inherit;
+    font-weight: bold;
+}
+
+.discord-message article
+{
+	font-size: 14px;
+}
+
 
 
 

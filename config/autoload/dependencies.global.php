@@ -8,18 +8,20 @@ return [
             App\Session\Handler\LogoutHandler::class => App\Session\Handler\LogoutHandler::class,
         ],
         'factories'  => [
-            FTC\Discord\Model\Aggregate\GuildRepository::class =>
-                FTC\Discord\Db\Postgresql\Container\GuildRepository::class,
-            FTC\Discord\Model\Aggregate\GuildWebsitePermissionRepository::class =>
-                FTC\Discord\Db\Postgresql\Container\GuildWebsitePermissionRepository::class,
-            FTC\Discord\Model\Aggregate\UserRepository::class =>
-                FTC\Discord\Db\Postgresql\Container\UserRepository::class,
-            FTC\Discord\Model\Aggregate\GuildRoleRepository::class =>
-                FTC\Discord\Db\Postgresql\Container\GuildRoleRepository::class,
+            \FTC\Discord\Model\Aggregate\GuildRepository::class =>
+                \FTC\Discord\Db\Postgresql\Container\GuildRepository::class,
+            \FTC\Discord\Model\Aggregate\GuildWebsitePermissionRepository::class =>
+                \FTC\Discord\Db\Postgresql\Container\GuildWebsitePermissionRepository::class,
+            \FTC\Discord\Model\Aggregate\UserRepository::class =>
+                \FTC\Discord\Db\Postgresql\Container\UserRepository::class,
+            \FTC\Discord\Model\Aggregate\GuildRoleRepository::class =>
+                \FTC\Discord\Db\Postgresql\Container\GuildRoleRepository::class,
             \FTC\Discord\Model\Aggregate\GuildMemberRepository::class =>
-                FTC\Discord\Db\Postgresql\Container\GuildMemberRepository::class,
-            FTC\Discord\Model\Aggregate\GuildChannelRepository::class =>
-                FTC\Discord\Db\Postgresql\Container\GuildChannelRepository::class,
+                \FTC\Discord\Db\Postgresql\Container\GuildMemberRepository::class,
+            \FTC\Discord\Model\Aggregate\GuildChannelRepository::class =>
+                \FTC\Discord\Db\Postgresql\Container\GuildChannelRepository::class,
+            \FTC\Discord\Model\Aggregate\GuildMessageRepository::class =>
+                \FTC\Discord\Db\Postgresql\Container\GuildMessageRepository::class,
             /**
              * Domain services
              */
