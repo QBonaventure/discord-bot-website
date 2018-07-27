@@ -55,6 +55,7 @@
 	"require" : {
 		"php": "^7.2",
 		"cheprasov/php-redis-client": "^1.8",
+		"filp/whoops": "^2.2",
 		"league/tactician": "^1.0",
 		"league/tactician-container": "^2.0",
 		"psr7-sessions/storageless": "^4.0",
@@ -82,8 +83,7 @@
 		"phpunit/phpunit" : "^7.0.1",
 		"squizlabs/php_codesniffer" : "^2.9.1",
 		"zendframework/zend-expressive-tooling" : "^1.0",
-		"zfcampus/zf-development-mode" : "^3.1",
-		"filp/whoops" : "^2.1.12"
+		"zfcampus/zf-development-mode" : "^3.1"
 	},
 	"autoload" : {
 		"psr-4" : {

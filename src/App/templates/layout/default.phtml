@@ -1,3 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+use FTC\Discord\Model\Aggregate\Guild;
+
+/**
+ * @var Guild $guildInfo
+ */
+
+$name = 'FTCBot';
+if ($guildInfo) {
+    $name = $guildInfo->getName();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +42,7 @@
                     </button>
                     <!-- Brand -->
                     <a class="navbar-brand" href="/">
-                        <img src="/assets/images/logos/<? $guildInfo->getName() ?>-mark.png" alt="<?= $guildInfo->getName() ?>" height="48" />
+                        <img src="/assets/images/logos/<?= $name ?>-mark.png" alt="<?= $name ?>" height="48" />
                     </a>
                 </div>
                 <!-- Links -->

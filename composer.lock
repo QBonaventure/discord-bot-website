@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2eeb91f68cb2b968b7e7d4259283022e",
+    "content-hash": "7d4ce3c3998b711b8dec0a6846f1db4d",
     "packages": [
         {
             "name": "aura/di",
@@ -558,6 +558,67 @@
                 "response"
             ],
             "time": "2017-02-09T16:10:21+00:00"
+        },
+        {
+            "name": "filp/whoops",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "181c4502d8f34db7aed7bfe88d4f87875b8e947a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/181c4502d8f34db7aed7bfe88d4f87875b8e947a",
+                "reference": "181c4502d8f34db7aed7bfe88d4f87875b8e947a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9 || ^7.0",
+                "psr/log": "^1.0.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9 || ^1.0",
+                "phpunit/phpunit": "^4.8.35 || ^5.7",
+                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "throwable",
+                "whoops"
+            ],
+            "time": "2018-03-03T17:56:25+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1858,12 +1919,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/QBonaventure/discord-db-postgresql.git",
-                "reference": "6dd062de34a9bc67ace3ae3b8373a6ea4678e614"
+                "reference": "e8c3ac912d4a7aa1e6a16a2266a572c657820c6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/QBonaventure/discord-db-postgresql/zipball/6dd062de34a9bc67ace3ae3b8373a6ea4678e614",
-                "reference": "6dd062de34a9bc67ace3ae3b8373a6ea4678e614",
+                "url": "https://api.github.com/repos/QBonaventure/discord-db-postgresql/zipball/e8c3ac912d4a7aa1e6a16a2266a572c657820c6f",
+                "reference": "e8c3ac912d4a7aa1e6a16a2266a572c657820c6f",
                 "shasum": ""
             },
             "require": {
@@ -1885,10 +1946,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/QBonaventure/discord-db-postgresql/tree/0.0.3",
+                "source": "https://github.com/QBonaventure/discord-db-postgresql/tree/master",
                 "issues": "https://github.com/QBonaventure/discord-db-postgresql/issues"
             },
-            "time": "2018-07-26T12:32:36+00:00"
+            "time": "2018-07-27T07:50:21+00:00"
         },
         {
             "name": "qbonaventure/discord-model",
@@ -1896,12 +1957,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/QBonaventure/discord-model.git",
-                "reference": "c946f6c684966aa8610ba1e4421142a3f7441edb"
+                "reference": "87e094ed6e2ade8d827ed05af24e4c6c91354772"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/QBonaventure/discord-model/zipball/c946f6c684966aa8610ba1e4421142a3f7441edb",
-                "reference": "c946f6c684966aa8610ba1e4421142a3f7441edb",
+                "url": "https://api.github.com/repos/QBonaventure/discord-model/zipball/87e094ed6e2ade8d827ed05af24e4c6c91354772",
+                "reference": "87e094ed6e2ade8d827ed05af24e4c6c91354772",
                 "shasum": ""
             },
             "require-dev": {
@@ -1925,10 +1986,10 @@
                 }
             ],
             "support": {
-                "source": "https://github.com/QBonaventure/discord-model/tree/0.0.4",
+                "source": "https://github.com/QBonaventure/discord-model/tree/master",
                 "issues": "https://github.com/QBonaventure/discord-model/issues"
             },
-            "time": "2018-07-26T12:31:59+00:00"
+            "time": "2018-07-26T14:28:49+00:00"
         },
         {
             "name": "qbonaventure/discord-website-pushover",
@@ -4110,67 +4171,6 @@
                 "instantiate"
             ],
             "time": "2017-07-22T11:58:36+00:00"
-        },
-        {
-            "name": "filp/whoops",
-            "version": "2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/filp/whoops.git",
-                "reference": "181c4502d8f34db7aed7bfe88d4f87875b8e947a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/181c4502d8f34db7aed7bfe88d4f87875b8e947a",
-                "reference": "181c4502d8f34db7aed7bfe88d4f87875b8e947a",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.5.9 || ^7.0",
-                "psr/log": "^1.0.1"
-            },
-            "require-dev": {
-                "mockery/mockery": "^0.9 || ^1.0",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0"
-            },
-            "suggest": {
-                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
-                "whoops/soap": "Formats errors as SOAP responses"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Whoops\\": "src/Whoops/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Filipe Dobreira",
-                    "homepage": "https://github.com/filp",
-                    "role": "Developer"
-                }
-            ],
-            "description": "php error handling for cool kids",
-            "homepage": "https://filp.github.io/whoops/",
-            "keywords": [
-                "error",
-                "exception",
-                "handling",
-                "library",
-                "throwable",
-                "whoops"
-            ],
-            "time": "2018-03-03T17:56:25+00:00"
         },
         {
             "name": "myclabs/deep-copy",

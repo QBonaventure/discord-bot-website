@@ -43,11 +43,7 @@ class GuildSetupMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $domainName = DomainName::create($request->getHeader('host')[0]);
-        
-        if ((string) $domainName === 'dftcbot-dev.test') {
-            return  $handler->handle($request);
-        }
-        
+
         if ($guild = $this->guildRepository->findByDomainName($domainName)) {
             $everyoneRole = $this->guildRoleRepository->getEveryoneRole($guild->getId());
             

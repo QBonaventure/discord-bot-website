@@ -31,7 +31,7 @@ class AuthenticationMiddleware implements MiddlewareInterface
     {
         $session = $request->getAttribute(SessionMiddleware::SESSION_ATTRIBUTE);
         $guild = $request->getAttribute(Guild::class);
-
+        
         if ($guild && !$user = $session->get('user')) {
             $user = [
                 'roles' => [$request->getAttribute(Guild::class)->getId()->__toString()],
