@@ -1,0 +1,14 @@
+<?php
+
+return [
+    'cache' => [
+        'server' => getenv('FTCBOT_WEBSITE_CACHE_SERVER'),
+        'timeout' => 2,
+        'version' => getenv('FTCBOT_WEBSITE_CACHE_VERSION'),
+    ],
+    'dependencies' => [
+        'factories' => [
+            \App\Cache\WebsiteCacheInterface::class => \App\Container\Cache\Redis::class,
+        ]
+    ]
+];

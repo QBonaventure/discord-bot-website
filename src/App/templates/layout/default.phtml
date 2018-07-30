@@ -7,11 +7,6 @@ use FTC\Discord\Model\Aggregate\Guild;
 /**
  * @var Guild $guildInfo
  */
-
-$name = 'FTCBot';
-if ($guildInfo) {
-    $name = $guildInfo->getName();
-}
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +15,7 @@ if ($guildInfo) {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title><?=$this->e($title)?> - zend-expressive</title>
+    <title><?=$guildInfo->getName() ?></title>
     <link rel="shortcut icon" href="assets/ico/favicon.ico" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
@@ -42,7 +37,7 @@ if ($guildInfo) {
                     </button>
                     <!-- Brand -->
                     <a class="navbar-brand" href="/">
-                        <img src="/assets/images/logos/<?= $name ?>-mark.png" alt="<?= $name ?>" height="48" />
+                        <img src="/<?= $guildInfo->getAssetsFolderName() ?>/images/mark.png" alt="<?= $name ?>" height="48" />
                     </a>
                 </div>
                 <!-- Links -->
@@ -86,7 +81,7 @@ if ($guildInfo) {
                 <?=$this->section('footer')?>
             <?php else: ?>
                 <p>
-                    &copy; 2017 - <?=date('Y')?> by Fear The Coconut. All rights reserved.
+                    &copy; <?= $guildInfo->getJoinedDate()->format('Y') ?> - <?= date('Y') ?> by <?= $guildInfo->getName() ?>. All rights reserved.
                 </p>
             <?php endif ?>
         </div>

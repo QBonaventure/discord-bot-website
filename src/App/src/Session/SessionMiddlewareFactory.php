@@ -17,7 +17,7 @@ class SessionMiddlewareFactory
     public function __invoke(ContainerInterface $container)
     {
         $config = $container->get('config')->offsetGet('session');
-        
+
         return new SessionMiddleware(
             new Sha256(),
             $config['key'],
@@ -25,7 +25,8 @@ class SessionMiddlewareFactory
             SetCookie::create($config['cookie_name'])
                 ->withSecure(false)
                 ->withHttpOnly(true)
-                ->withPath('/'),
+            ->withPath('/')
+            ->withDomain($_SERVER['HTTP_HOST']),
             new Parser(),
             $config['expiration_time'],
             new SystemClock()

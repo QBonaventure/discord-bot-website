@@ -1919,12 +1919,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/QBonaventure/discord-db-postgresql.git",
-                "reference": "e8c3ac912d4a7aa1e6a16a2266a572c657820c6f"
+                "reference": "648df417a9f4d2153c9e27c80c0451fcda90259a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/QBonaventure/discord-db-postgresql/zipball/e8c3ac912d4a7aa1e6a16a2266a572c657820c6f",
-                "reference": "e8c3ac912d4a7aa1e6a16a2266a572c657820c6f",
+                "url": "https://api.github.com/repos/QBonaventure/discord-db-postgresql/zipball/648df417a9f4d2153c9e27c80c0451fcda90259a",
+                "reference": "648df417a9f4d2153c9e27c80c0451fcda90259a",
                 "shasum": ""
             },
             "require": {
@@ -1949,7 +1949,7 @@
                 "source": "https://github.com/QBonaventure/discord-db-postgresql/tree/master",
                 "issues": "https://github.com/QBonaventure/discord-db-postgresql/issues"
             },
-            "time": "2018-07-27T07:50:21+00:00"
+            "time": "2018-07-30T10:42:25+00:00"
         },
         {
             "name": "qbonaventure/discord-model",
@@ -1957,12 +1957,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/QBonaventure/discord-model.git",
-                "reference": "87e094ed6e2ade8d827ed05af24e4c6c91354772"
+                "reference": "3d8bf32c2ce4ba40d56dc7e20f413eeb3b29d426"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/QBonaventure/discord-model/zipball/87e094ed6e2ade8d827ed05af24e4c6c91354772",
-                "reference": "87e094ed6e2ade8d827ed05af24e4c6c91354772",
+                "url": "https://api.github.com/repos/QBonaventure/discord-model/zipball/3d8bf32c2ce4ba40d56dc7e20f413eeb3b29d426",
+                "reference": "3d8bf32c2ce4ba40d56dc7e20f413eeb3b29d426",
                 "shasum": ""
             },
             "require-dev": {
@@ -1989,7 +1989,7 @@
                 "source": "https://github.com/QBonaventure/discord-model/tree/master",
                 "issues": "https://github.com/QBonaventure/discord-model/issues"
             },
-            "time": "2018-07-26T14:28:49+00:00"
+            "time": "2018-07-30T10:41:17+00:00"
         },
         {
             "name": "qbonaventure/discord-website-pushover",

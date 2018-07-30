@@ -29,7 +29,7 @@ return [
             
             App\Middleware\AuthenticationMiddleware::class => App\Container\Middleware\AuthenticationMiddlewareFactory::class,
             App\Middleware\AuthorizationMiddleware::class => App\Container\Middleware\AuthorizationMiddlewareFactory::class,
-            App\Session\Handler\LoginHandler::class => App\Session\Handler\LoginHandlerFactory::class,
+            App\Session\Handler\LoginHandler::class => App\Container\Session\Handler\LoginHandlerFactory::class,
             App\Middleware\GuildSetupMiddleware::class => App\Middleware\GuildSetupMiddlewareFactory::class,
             App\Middleware\CommandDispatcherMiddleware::class => App\Container\Middleware\CommandDispatcherMiddlewareFactory::class,
             

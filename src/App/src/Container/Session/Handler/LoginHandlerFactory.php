@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace App\Session\Handler;
+declare(strict_types=1);
+
+namespace App\Container\Session\Handler;
 
 use Psr\Container\ContainerInterface;
-use FTC\Discord\Model\Aggregate\GuildRepository;
 use FTC\Discord\Model\Aggregate\GuildMemberRepository;
 use App\Cache\WebsiteCacheInterface;
+use App\Session\Handler\LoginHandler;
 
 class LoginHandlerFactory
 {

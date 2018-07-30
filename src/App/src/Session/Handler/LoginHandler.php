@@ -13,13 +13,9 @@ use Discord\OAuth\Discord;
 use PSR7Sessions\Storageless\Http\SessionMiddleware;
 use Zend\Diactoros\Response\RedirectResponse;
 use FTC\Discord\Model\ValueObject\Snowflake\UserId;
-use FTC\Discord\Model\ValueObject\Snowflake\GuildId;
-use FTC\Discord\Model\Aggregate\GuildRepository;
 use FTC\Discord\Model\Aggregate\GuildMember;
 use FTC\Discord\Model\Aggregate\GuildMemberRepository;
-use RedisClient\RedisClient;
 use App\Cache\WebsiteCacheInterface;
-use function GuzzleHttp\Psr7\parse_query;
 
 class LoginHandler implements MiddlewareInterface
 {
@@ -77,8 +73,22 @@ class LoginHandler implements MiddlewareInterface
             ?? $request->getHeaders()['referer'][0]
             ?? self::REDIRECT_ROUTE;
         
+        if ($params['userId']) {
+            $redirectRoute = $this->cache->getLoginRedirectUrl($params['state']);
+            $userId = UserId::create((int) $params['userId']);
+            $user = $this->userRepo->getById($userId);
+            $session->set('user', $user->toArray());
+            
+            return new RedirectResponse($redirectRoute);
+        }
+        
         if ($params['code'] && $redirectRoute = $this->cache->getLoginRedirectUrl($params['state'])) {
             $user = $this->getLoggedInUser($params['code']);
+            if ($_SERVER['HTTP_HOST'] != explode('/', $redirectRoute)[2]) {
+            
+                return new RedirectResponse('http://'.explode('/', $redirectRoute)[2].'/login?userId='.$user->getId().'&state='.$params['state']);
+            }
+            
             $session->set('user', $user->toArray());
 
             return new RedirectResponse($redirectRoute);
@@ -86,15 +96,14 @@ class LoginHandler implements MiddlewareInterface
         
         $state = bin2hex(random_bytes(32));
         $url = $this->getAuthorizationUrl($state);
-
         $this->cache->setLoginRedirectUrl($state, $redirectRoute);
-        
+
         return new RedirectResponse($url);
     }
     
     private function getAuthorizationUrl($state)
     {
-        return $this->oauthClient->getAuthorizationUrl(['state' => $state, 'redirectUri' => "lkjkjkljkljkljlkjlkj"]);
+        return $this->oauthClient->getAuthorizationUrl(['state' => $state]);
     }
     
     
@@ -103,7 +112,6 @@ class LoginHandler implements MiddlewareInterface
         $token = $this->oauthClient->getAccessToken('authorization_code', [
             'code' => $code,
             'client_id'     => $this->config['discord_oauth']['clientId'],
-            'redirectUri' => "oooooooooooooooooooo",
         ]);
         
         $discordUser = $this->oauthClient->getResourceOwner($token);
